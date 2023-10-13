@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_sach_toolbar"
+        android:title="Gian hàng sách"
+        android:icon="@drawable/baseline_menu_book_24"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_theloai_toolbar"
+        android:title="Thể loại sách"
+        android:icon="@drawable/baseline_library_books_24"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_giohang_toolbar"
+        android:title="Giỏ hàng"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        app:showAsAction="ifRoom" />
+
+</menu>

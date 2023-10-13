@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "923816114111",
+    "project_id": "duanmauu",
+    "storage_bucket": "duanmauu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923816114111:android:2f15b5a0db40148ee3d30a",
+        "android_client_info": {
+          "package_name": "com.example.duanmauu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923816114111-5vtdrdu4gfgio0si01g0908p12rgksds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBht8FJ6ksewY6yBIiRGoW3lE8Ba_q3eI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923816114111-5vtdrdu4gfgio0si01g0908p12rgksds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
