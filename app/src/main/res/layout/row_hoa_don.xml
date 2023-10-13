@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/sach"
+            android:id="@+id/hoadonimg"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="ten sach day nay"
+                android:textSize="18sp"
+                android:maxLines="2"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:id="@+id/hoadontensach"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng giá tiền sách     "
+                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3000"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"
+                    android:id="@+id/hoadongiatien"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:paddingRight="20dp"
+                android:gravity="end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:text="1"
+                    android:textSize="22sp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/hoadonsoluong"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
