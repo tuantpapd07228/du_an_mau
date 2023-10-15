@@ -16,4 +16,6 @@ Người dùng có thể thay đổi thông tin, đặt sách, có thể hủy n
 
 ## Tài Liệu Bổ Sung 
 -[https://drive.google.com/file/d/1i1DkBozm5EvTt1juybI0tT1lw5fpSTiu/view?usp=sharing] tải về bản cơ sở dữ liệu 
-Lưu ý: Ứng dụng cần cơ sở dữ liệu và các API để sử dụng, sẽ update sau
+-[https://drive.google.com/file/d/1fVy3UmD1oIUV2Gch4jxyPHZYKzX-9mDE/view?usp=sharing] tải về các API và setup ở htdocs trong xampp
+
+Lưu ý: Ứng dụng hoàn thiện khoảng 80%
