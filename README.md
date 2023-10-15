@@ -9,10 +9,11 @@ Người dùng có thể thay đổi thông tin, đặt sách, có thể hủy n
 ## Hướng Dẫn Sử Dụng
 
 1. Chọn nhánh Main để kéo code về máy
-2. Tải và cài đặt ứng dụng
-3. Mở ứng dụng và đăng nhập, có thể đăng nhập bằng tài khoản Google
-4. Sử dụng các chức năng trong ứng dụng
+2. Sử dụng xampp để bật host và code
+3. Tải và cài đặt ứng dụng
+4. Mở ứng dụng và đăng nhập, có thể đăng nhập bằng tài khoản Google
+5. Sử dụng các chức năng trong ứng dụng
 
 ## Tài Liệu Bổ Sung 
-
+-[https://drive.google.com/file/d/1i1DkBozm5EvTt1juybI0tT1lw5fpSTiu/view?usp=sharing] tải về bản cơ sở dữ liệu 
 Lưu ý: Ứng dụng cần cơ sở dữ liệu và các API để sử dụng, sẽ update sau
