@@ -8,7 +8,7 @@ Người dùng có thể thay đổi thông tin, đặt sách, có thể hủy n
 
 ## Hướng Dẫn Sử Dụng
 
-1. Chọn nhánh Main để kéo code về máy
+1. Chọn nhánh Sách online để kéo code về máy
 2. Sử dụng xampp để bật host và code
 3. Tải và cài đặt ứng dụng
 4. Mở ứng dụng và đăng nhập, có thể đăng nhập bằng tài khoản Google
