@@ -8,8 +8,8 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/headerbg"
+        android:label="Sách Online"
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAnMauu"
         tools:targetApi="31">
@@ -39,6 +39,7 @@
             android:exported="true">
 
         </activity>
+
         <activity
             android:name=".Home_Activity"
             android:exported="true" />

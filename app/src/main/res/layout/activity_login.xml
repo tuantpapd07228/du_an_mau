@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".Login_Activity">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/teal_200"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
-
+            android:paddingTop="250dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_width="400dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_height="wrap_content"
             android:hint="Tên tài khoản">
 
@@ -30,6 +29,7 @@
 
             android:layout_gravity="center"
             android:layout_width="400dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu">
 

@@ -31,14 +31,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class NguoiDung extends Fragment {
+public class NguoiDungFragment extends Fragment {
     com.example.duanmauu.model.NguoiDung nguoiDung;
     Button btnUD;
     ReadData readData;
     View view;
     Home_Activity activity;
-    String url = GetIP.ip+":8686/duanmau/update_nguoidung.php";
-    String urlgetnguoidung =GetIP.ip+":8686/duanmau/get_nguoidung.php";
+    String url = GetIP.IP +":8686/duanmau/update_nguoidung.php";
+    String urlgetnguoidung =GetIP.IP +":8686/duanmau/get_nguoidung.php";
     SelectNguoidung mselectNguoidung;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

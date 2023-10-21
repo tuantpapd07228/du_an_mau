@@ -43,7 +43,7 @@ public class TrangChuFragment extends Fragment {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
-                String idvideo = "imNbIwVJ1lA";
+                String idvideo = "T57GRogU2FI";
                 youTubePlayer.loadVideo(idvideo,0);
             }
         });

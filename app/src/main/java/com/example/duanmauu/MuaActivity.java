@@ -38,8 +38,11 @@ import com.example.duanmauu.model.GioHang;
 import com.example.duanmauu.model.itf.ITFGioHang;
 import com.example.duanmauu.model.NguoiDung;
 import com.example.duanmauu.model.Sach;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -49,8 +52,8 @@ public class MuaActivity extends AppCompatActivity {
     NguoiDung nguoiDung;
     Sach sach;
     int soluong =1;
-    String url = GetIP.ip+":8686/duanmau/update_nguoidung.php";
-    com.example.duanmauu.NguoiDung nguoiDungact;
+    String url = GetIP.IP+":8686/duanmau/update_nguoidung.php";
+    NguoiDung nguoiDungact;
     WriteData writeData;
 
     ReadData readData;
@@ -64,13 +67,14 @@ public class MuaActivity extends AppCompatActivity {
         readData = new ReadData(MuaActivity.this);
 
         writeData = new WriteData(MuaActivity.this);
-        nguoiDungact = new com.example.duanmauu.NguoiDung();
+        nguoiDungact = new NguoiDung();
         Intent intent = getIntent();
         sach = (Sach) intent.getSerializableExtra("sach");
         nguoiDung = (NguoiDung) intent.getSerializableExtra("nguoidung");
         setData();
         binding.soluong.setText(soluong+"");
-        binding.tongtienhang.setText(getTongtienhang()+"");
+        binding.tongtien.setText(getTongtienhang()+"");
+        binding.tongcong.setText((getTongtienhang()+30000)+"");
         binding.cong1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,24 +83,30 @@ public class MuaActivity extends AppCompatActivity {
                     soluong = sach.getSoLuong();
                 }
                 binding.soluong.setText(soluong+"");
-                binding.tongtienhang.setText(getTongtienhang()+"");
+                binding.tongtien.setText(getTongtienhang()+"");
+                binding.tongcong.setText((getTongtienhang()+30000)+"");
 
             }
         });
         binding.tru1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soluong -=1;
-                binding.soluong.setText(soluong+"");
-                binding.tongtienhang.setText(getTongtienhang()+"");
+                if (Integer.parseInt(binding.soluong.getText().toString()) == 1){
+                    soluong = 2;
+                }
+                    binding.tru1.setEnabled(true);
+                    soluong -=1;
+                    binding.soluong.setText(soluong+"");
+                    binding.tongtien.setText(getTongtienhang()+"");
+                    binding.tongcong.setText((getTongtienhang()+30000)+"");
 
             }
         });
+
         binding.themvaogio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 writeData.InsertGioHang(nguoiDung.getId(), sach.getIdSach(), binding.soluong.getText().toString());
-                Toast.makeText(MuaActivity.this, "them vao gio hang thanh cong 86", Toast.LENGTH_SHORT).show();
             }
         });
         binding.thongtinnguoimua.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +139,7 @@ public class MuaActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
                                         if (requestQueue != null) {
-                                            Toast.makeText(MuaActivity.this, "ban da update thanh cong", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MuaActivity.this, "Đã cập nhật thông tin", Toast.LENGTH_SHORT).show();
                                             nguoiDung.setHoten(name.getText().toString().trim());
                                             nguoiDung.setEmail(email.getText().toString().trim());
                                             nguoiDung.setDiachi(addrr.getText().toString().trim());
@@ -182,71 +192,19 @@ public class MuaActivity extends AppCompatActivity {
         binding.mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(MuaActivity.this);
-                dialog.setContentView(R.layout.dialog_bottom);
-                Button xacnhan = dialog.findViewById(R.id.dathangxacnhan);
-                TextView tongtienhang = dialog.findViewById(R.id.dathangtongtienhang);
-                tongtienhang.setText(sach.getGiaBan()+"");
-                TextView ten = dialog.findViewById(R.id.dathangten);
-                TextView diachi = dialog.findViewById(R.id.dathangdiachidiachi);
-                TextView tongtienthanhtoan = dialog.findViewById(R.id.dathangtongcongtien);
-                tongtienthanhtoan.setText(sach.getGiaBan()+30000+"");
-                RecyclerView recyclerView = dialog.findViewById(R.id.recycledathang);
-                ten.setText(nguoiDung.getHoten());
-                diachi.setText(nguoiDung.getDiachi());
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MuaActivity.this);
-                linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-                recyclerView.setLayoutManager(linearLayoutManager);
-                ArrayList<GioHang> arrgiohang = new ArrayList<>();
-                writeData.InsertGioHang(nguoiDung.getId(), sach.getIdSach(), String.valueOf(Integer.parseInt(binding.soluong.getText().toString())));
-                readData.getGioHang(nguoiDung.getId(), new ITFGioHang() {
+                String idhoadon1 = getIdHoaDon();
+                Calendar calendar = new GregorianCalendar();
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    int month = calendar.get(Calendar.MONTH);
+                    int year = calendar.get(Calendar.YEAR);
+                writeData.insertHoaDon(idhoadon1, nguoiDung.getId(), year + "/" + (1+month) + "/" + day, new WriteData.XuLiHoaDon() {
                     @Override
-                    public void xuLiGioHang(ArrayList<GioHang> arr) {
-                        arrgiohang.addAll(arr);
+                    public void xulihoadon(String idhoandon) {
+                        writeData.inserDonHangChiTiet(idhoadon1, sach.getIdSach(), Integer.parseInt(binding.soluong.getText().toString()));
+                        Toast.makeText(MuaActivity.this, "Đơn hàng đang được xác nhận", Toast.LENGTH_SHORT).show();
                     }
                 });
-                ArrayList<GioHang> arrthanhtoan = new ArrayList<>();
-                for (int i = 0; i < arrgiohang.size(); i++) {
-                    if (sach.getIdSach().equals(arrgiohang.get(i).getIdSach())){
-                        arrthanhtoan.add(arrgiohang.get(i));
-                        return;
-                }
 
-                DatSachAdapter adapter1 = new DatSachAdapter(arrthanhtoan, MuaActivity.this);
-                recyclerView.setAdapter(adapter1);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-                dialog.getWindow().setGravity(Gravity.BOTTOM);
-                dialog.show();
-
-
-                adapter1.notifyDataSetChanged();
-//                if (arrtinhtien.size() > 0){
-//                    Calendar calendar = new GregorianCalendar();
-//                    int day = calendar.get(Calendar.DAY_OF_MONTH);
-//                    int month = calendar.get(Calendar.MONTH);
-//                    int year = calendar.get(Calendar.YEAR);
-//                    nguoiDung = activity.getNguoidung();
-//                    writeData.insertHoaDon(idhoadon, nguoiDung.getId(), year + "/" + month + "/" + day, new WriteData.XuLiHoaDon() {
-//                        @Override
-//                        public void xulihoadon(String idhoandon1) {
-//                            System.out.println("id hoa don 137 "+idhoadon);
-//                            for (int i = 0; i < arrtinhtien.size(); i++) {
-//                                writeData.inserDonHangChiTie(idhoadon, arrtinhtien.get(i).getIdSach(), arrtinhtien.get(i).getSoLuongTrongGioHang());
-//                                deleteData.deleteGioHang(nguoiDung.getId(), arrtinhtien.get(i).getIdSach());
-//                            }
-//                            arr.clear();
-//                            arrtinhtien.clear();
-//                            tongtien.setText(setTongTien(arrtinhtien)+"");
-//                            getData();
-//                            adapter.notifyDataSetChanged();
-//
-//                        }
-//                    });
-//                }
-            }
             }
         });
     }

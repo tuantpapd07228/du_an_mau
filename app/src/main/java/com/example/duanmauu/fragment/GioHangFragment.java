@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,6 @@ import com.example.duanmauu.adapter.GioHangAdapter;
 import com.example.duanmauu.model.NguoiDung;
 import com.example.duanmauu.data.ReadData;
 import com.example.duanmauu.data.WriteData;
-import com.example.duanmauu.model.Sach;
 import com.example.duanmauu.model.itf.Cong1;
 import com.example.duanmauu.model.itf.ITFGioHang;
 import com.example.duanmauu.model.itf.ITFTinhGiaTien;
@@ -193,7 +191,7 @@ public class GioHangFragment extends Fragment {
                             public void xulihoadon(String idhoandon1) {
                                 System.out.println("id hoa don 137 "+idhoadon);
                                 for (int i = 0; i < arrtinhtien.size(); i++) {
-                                    writeData.inserDonHangChiTie(idhoadon, arrtinhtien.get(i).getIdSach(), arrtinhtien.get(i).getSoLuongTrongGioHang());
+                                    writeData.inserDonHangChiTiet(idhoadon, arrtinhtien.get(i).getIdSach(), arrtinhtien.get(i).getSoLuongTrongGioHang());
                                     deleteData.deleteGioHang(nguoiDung.getId(), arrtinhtien.get(i).getIdSach());
                                 }
                                 arr.clear();

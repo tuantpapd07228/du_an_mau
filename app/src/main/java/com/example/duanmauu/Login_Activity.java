@@ -29,7 +29,7 @@ public class Login_Activity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         readData = new ReadData(getApplicationContext());
-        url = GetIP.ip+ ":8686/duanmau/get_nguoidung.php";
+        url = GetIP.IP + ":8686/duanmau/get_nguoidung.php";
         uername = binding.username.getText().toString().trim();
         arr = new ArrayList<>();
 

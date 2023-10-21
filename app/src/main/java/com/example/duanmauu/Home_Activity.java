@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.duanmauu.databinding.ActivityHomeBinding;
 import com.example.duanmauu.fragment.GioHangFragment;
-import com.example.duanmauu.fragment.HoaDonFragment;
 import com.example.duanmauu.fragment.SachFragment;
 import com.example.duanmauu.fragment.TheLoaiSach_Fragment;
 import com.example.duanmauu.fragment.TrangChuFragment;
@@ -74,7 +73,7 @@ public class Home_Activity extends AppCompatActivity {
                         binding.toolbar.setTitle("Trang chủ");
                         break;
                     case R.id.menu_info:
-                        fragment = new NguoiDung();
+                        fragment = new NguoiDungFragment();
                         binding.toolbar.setTitle("Thông tin cá nhân");
                         break;
                     case R.id.menu_home:

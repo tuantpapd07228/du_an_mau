@@ -20,11 +20,11 @@ import java.util.Map;
 public class WriteData {
     Context context;
     String id,ten,mota,vitri;
-    String urlnguoidung = GetIP.ip+":8686/duanmau/insert_nguoidung.php";
-    String urlgiohang = GetIP.ip+":8686/duanmau/insert_giohang.php";
-    String urlupdategiohang = GetIP.ip+":8686/duanmau/update_soluongtronggiohang.php";
-    String urlhoadon = GetIP.ip+":8686/duanmau/insert_hoadon.php";
-    String urlhoadonchitiet= GetIP.ip+":8686/duanmau/insert_hoadonchitiet.php";
+    String urlnguoidung = GetIP.IP +":8686/duanmau/insert_nguoidung.php";
+    String urlgiohang = GetIP.IP +":8686/duanmau/insert_giohang.php";
+    String urlupdategiohang = GetIP.IP +":8686/duanmau/update_soluongtronggiohang.php";
+    String urlhoadon = GetIP.IP +":8686/duanmau/insert_hoadon.php";
+    String urlhoadonchitiet= GetIP.IP +":8686/duanmau/insert_hoadonchitiet.php";
 
     public WriteData(Context context) {
         this.context = context;
@@ -63,7 +63,7 @@ public class WriteData {
     }
     // insert gio han
 
-   public void InsertGioHang(String id, String idsach, String soluong){
+   public void InsertGioHang( String id, String idsach, String soluong){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlgiohang, new Response.Listener<String>() {
             @Override
@@ -146,7 +146,7 @@ public class WriteData {
 
    // insert don hang chi tiet
 
-    public void inserDonHangChiTie(String idhoadon, String idsach, int soluong){
+    public void inserDonHangChiTiet(String idhoadon, String idsach, int soluong){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhoadonchitiet, new Response.Listener<String>() {
             @Override

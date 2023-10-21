@@ -15,42 +15,44 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeleteData {
+public class UpdateData {
     Context context;
-    String urlgiohang= GetIP.IP +":8686/duanmau/delete_giohang.php";
-    String urlcanceldonhang = GetIP.IP +":8686/duanmau/huydon.php";
+    String urlxulidonhangcanxacnhan = GetIP.IP+":8686/quanly/update_xacnhan_hoadon.php";
+    String urlvanchuyen = GetIP.IP+":8686/quanly/update_vanchuyen.php";
 
-    public DeleteData(Context context) {
+    public UpdateData(Context context) {
         this.context = context;
     }
 
-    public void deleteGioHang(String idnguoidung, String idsach){
+    public void updateDonHangDoiXacNhan(String iddonhang, String trangthai){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlgiohang, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlxulidonhangcanxacnhan, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                System.out.println("xoa thanh cong 31 "+ response);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("loi khi xoa 36"+error.getMessage());
+
             }
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("idnguoidung", idnguoidung);
-                map.put("idsach", idsach);
+                map.put("idhoadon", iddonhang);
+                map.put("trangthai", trangthai);
                 return map;
             }
         };
         requestQueue.add(stringRequest);
     }
-    public void setCancelDonHang(String iddonhang){
+
+
+    public void updateDonHangVanChuyenThanhCong(String iddonhang, String trangthai){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlcanceldonhang, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlvanchuyen, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -65,7 +67,8 @@ public class DeleteData {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("iddonhang", iddonhang);
+                map.put("idhoadon", iddonhang);
+                map.put("trangthai", trangthai);
                 return map;
             }
         };

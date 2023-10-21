@@ -46,9 +46,12 @@ public class DonMuaActivity extends AppCompatActivity {
                         tab.setText("Xác nhận");
                         break;
                     case 1:
-                        tab.setText("Hoàn thành");
+                        tab.setText("Vận chuyển");
                         break;
                     case 2:
+                        tab.setText("Hoàn thành");
+                        break;
+                    case 3:
                         tab.setText("Đã hủy");
                         break;
                 }

@@ -15,7 +15,9 @@ import com.example.duanmauu.Home_Activity;
 import com.example.duanmauu.R;
 import com.example.duanmauu.data.ReadData;
 import com.example.duanmauu.model.HoaDonInner;
+import com.example.duanmauu.model.HoaDonInnerXN;
 import com.example.duanmauu.model.HoaDonOuter;
+import com.example.duanmauu.model.HoaDonOuterXN;
 
 
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class HoaDonOuterAdapter extends RecyclerView.Adapter<HoaDonOuterAdapter.
             });
             holder.trangthai.setText("Đợi xác nhận");
         }
-        readData.getHoaDoninner(hoaDonOuter.getIdHoaDon(), new ReadData.XuLiHoaDonInner() {
+        readData.getHoaDoninner(hoaDonOuter.getIdHoaDon(), new ReadData.XuLiHoaDonInner1() {
             @Override
             public void xulihoadoninner(ArrayList<HoaDonInner> arrhoadon1) {
                 arrinner = new ArrayList<>();

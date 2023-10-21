@@ -3,6 +3,7 @@ package com.example.duanmauu.model;
 public class HoaDonOuter {
     private String idHoaDon, ngayMua, tongTien, trangthai;
 
+
     public HoaDonOuter(String idHoaDon, String ngayMua, String tongTien,String trangthai) {
         this.idHoaDon = idHoaDon;
         this.ngayMua = ngayMua;

@@ -2,6 +2,7 @@ package com.example.duanmauu.data;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -15,7 +16,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.duanmauu.model.GioHang;
 import com.example.duanmauu.model.HoaDonInner;
+import com.example.duanmauu.model.HoaDonInnerXN;
 import com.example.duanmauu.model.HoaDonOuter;
+import com.example.duanmauu.model.HoaDonOuterXN;
 import com.example.duanmauu.model.NguoiDung;
 import com.example.duanmauu.model.Sach;
 import com.example.duanmauu.model.TheLoaiSoLuong;
@@ -33,16 +36,20 @@ import java.util.Map;
 
 public class ReadData {
     Context context;
-    String urlnguoidung= GetIP.ip + ":8686/duanmau/get_nguoidung.php";
-    String urlsach=GetIP.ip+ ":8686/duanmau/get_sach.php";
-    String urlhoadoninner= GetIP.ip+":8686/duanmau/get_HoaDoninner.php";
-    String urlhoadonouter= GetIP.ip+":8686/duanmau/get_HoaDonOuter.php";
-    String urltheloaisachtheotungchude = GetIP.ip +":8686/duanmau/get_theloaisachtheotungchude.php";
-    String urltheloaisachtheotungchudelimit15 = GetIP.ip +":8686/duanmau/get_theloaisachtheotungchudelimit15.php";
-    String urlgiohang=GetIP.ip +":8686/duanmau/get_giohang.php";
-    String urltheloai= GetIP.ip + ":8686/duanmau/get_TheLoaiSach.php";
-    String urlhoadondoixacnhan = GetIP.ip+":8686/duanmau/donhang_doixacnhan.php";
+    String urlnguoidung= GetIP.IP + ":8686/duanmau/get_nguoidung.php";
+    String urlsach=GetIP.IP + ":8686/duanmau/get_sach.php";
+    String urlhoadoninner= GetIP.IP +":8686/duanmau/get_HoaDoninner.php";
+    String urlhoadonouter= GetIP.IP +":8686/duanmau/get_HoaDonOuter.php";
+    String urltheloaisachtheotungchude = GetIP.IP +":8686/duanmau/get_theloaisachtheotungchude.php";
+    String urltheloaisachtheotungchudelimit15 = GetIP.IP +":8686/duanmau/get_theloaisachtheotungchudelimit15.php";
+    String urlgiohang=GetIP.IP +":8686/duanmau/get_giohang.php";
+    String urltheloai= GetIP.IP + ":8686/duanmau/get_TheLoaiSach.php";
+    String urlhoadondoixacnhan = GetIP.IP +":8686/duanmau/donhang_doixacnhan.php";
+    String urlhoadondoixacnhan1 = GetIP.IP+":8686/duanmau/get_donhangdangchoxacnhan.php";
 
+    String urldonhangdangvanchuyen = GetIP.IP+":8686/quanly/get_donhangdangvanchuyen.php";
+    String urlhoadondahoanthanh = GetIP.IP+":8686/duanmau/get_donhangdahoanthanh.php";
+    String urlhoadonvanchuyen = GetIP.IP+":8686/duanmau/get_hoadonvanchuyen.php";
 
     ArrayList<NguoiDung> arrnguoidung = new ArrayList<>();
     SelectNguoidung selectNguoidung;
@@ -92,7 +99,7 @@ public class ReadData {
     // get 1 nguoi dung
 
     public void getNguoiDung1(String username, SelectNguoidung selectNguoidung){
-        String url = GetIP.ip+":8686/duanmau/get_userpw.php";
+        String url = GetIP.IP +":8686/duanmau/get_userpw.php";
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -205,7 +212,7 @@ public class ReadData {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("idnguoidung", idnguoidung+"");
+                map.put("idnguoidung", idnguoidung);
                 map.put("trangthai", trangthai);
                 return map;
             }
@@ -216,8 +223,8 @@ public class ReadData {
 
 
     //ghi list hoa don inner
-    public interface XuLiHoaDonInner {void xulihoadoninner(ArrayList<HoaDonInner> arrhoadon1);}
-    public void getHoaDoninner(String idhoadon , XuLiHoaDonInner xuLiHoaDon2 ){
+    public interface XuLiHoaDonInner1 {void xulihoadoninner(ArrayList<HoaDonInner> arrhoadon1);}
+    public void getHoaDoninner(String idhoadon , XuLiHoaDonInner1 xuLiHoaDon2 ){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhoadoninner, new Response.Listener<String>() {
             @Override
@@ -255,6 +262,88 @@ public class ReadData {
         requestQueue.add(stringRequest);
 
     }
+    public interface XuLiHoaDonInner2 {void xulihoadoninner(ArrayList<HoaDonInnerXN> arrhoadon1);}
+    public void getHoaDoninner(String idhoadon , XuLiHoaDonInner2 xuLiHoaDon2 ){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhoadoninner, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ArrayList<HoaDonInnerXN> arr = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                        arr.add(new HoaDonInnerXN(
+                                jsonObject.getString("tieuDe"),
+                                jsonObject.getString("soLuongMua"),
+                                jsonObject.getString("tienSach"),
+                                jsonObject.getString("hinhAnh")));
+                    }
+                    xuLiHoaDon2.xulihoadoninner(arr);
+                } catch (JSONException e) {
+                    Log.e("errr read 236 ",e.getMessage() );
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("errr read 242 ",error.getMessage() );
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("idhoadon", idhoadon);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+    }
+
+    public interface XuLiHoaDonDoiXacNhan{void xulihoadondoixacnhan(ArrayList<HoaDonOuterXN > arrayList);}
+    public void getHoaDonDoiXacNhan(String id ,XuLiHoaDonDoiXacNhan xuLiHoaDondoixacnhan){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhoadondoixacnhan1, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ArrayList<HoaDonOuterXN> arrayList = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                            arrayList.add(new HoaDonOuterXN(
+                                    jsonObject.getString("idHoaDon"),
+                                    jsonObject.getString("username"),
+                                    jsonObject.getString("ngayMua"),
+                                    jsonObject.getString("tongTien"),
+                                    jsonObject.getString("ten"),
+                                    jsonObject.getString("sdt"),
+                                    jsonObject.getString("diachi")));
+
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(context, "errrrrrr 324 readdata" + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                xuLiHoaDondoixacnhan.xulihoadondoixacnhan(arrayList);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "errrrrrr329 readdata" + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("idnguoidung", id);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
     //ghi líst hóa đơn chi tiết
 //    public void getHoaDonChiTiet(){
 //        RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -286,6 +375,94 @@ public class ReadData {
 //        requestQueue.add(jsonArrayRequest);
 //
 //    }
+    public interface XuLiHoaDonVanChuyen1{void xulihoadonvanchuyen(ArrayList<HoaDonOuterXN > arrayList);}
+    public void getHoaDonVanChuyen(String id ,XuLiHoaDonVanChuyen1 xuLiHoaDondvanchuyen){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+       StringRequest stringRequest = new StringRequest(Request.Method.POST, urlhoadonvanchuyen, new Response.Listener<String>() {
+           @Override
+           public void onResponse(String response) {
+               ArrayList<HoaDonOuterXN> arrayList = new ArrayList<>();
+               try {
+                   JSONArray jsonArray = new JSONArray(response);
+                   for (int i = 0; i < jsonArray.length(); i++) {
+                       JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                       arrayList.add(new HoaDonOuterXN(
+                               jsonObject.getString("idHoaDon"),
+                               jsonObject.getString("username"),
+                               jsonObject.getString("ngayMua"),
+                               jsonObject.getString("tongTien"),
+                               jsonObject.getString("ten"),
+                               jsonObject.getString("sdt"),
+                               jsonObject.getString("diachi")));
+
+                   }
+               } catch (JSONException e) {
+                   throw new RuntimeException(e);
+               }
+               xuLiHoaDondvanchuyen.xulihoadonvanchuyen(arrayList);
+           }
+       }, new Response.ErrorListener() {
+           @Override
+           public void onErrorResponse(VolleyError error) {
+
+           }
+       }){
+           @Nullable
+           @Override
+           protected Map<String, String> getParams() throws AuthFailureError {
+               Map<String , String> map = new HashMap<>();
+               map.put("idnguoidung", id);
+               return map;
+           }
+       };
+       requestQueue.add(stringRequest);
+    }
+    // ghi list giỏ hàng
+    public void getGioHangByIDGHCT( String idghct , String id, ITFGioHang xuli){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlgiohang, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                ArrayList<GioHang> arr = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        GioHang gioHang = new GioHang(
+                                //       idHDCT, String idSach, String idNguoiDung, String tenSach,String hinhAnh, int soLuong, int giaTien, int soLuongCuaSach
+                                jsonObject.getString("IdGH"),
+                                jsonObject.getString("IdSach"),
+                                jsonObject.getString("IdNguoiDung"),
+                                jsonObject.getString("TenSach"),
+                                jsonObject.getString("HinhAnh"),
+                                jsonObject.getInt("SoLuong"),
+                                jsonObject.getInt("GiaTien"),
+                                jsonObject.getInt("SoLuongSach")
+                        );
+                        arr.add(gioHang);
+                    }
+                    xuli.xuLiGioHang(arr);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("loi o 268 read"+ error.getMessage());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map= new HashMap<>();
+                map.put("idnguoidung",id);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+    }
     // ghi list giỏ hàng
     public void getGioHang(String id, ITFGioHang xuli){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
